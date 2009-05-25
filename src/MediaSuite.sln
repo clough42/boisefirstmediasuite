@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual C# Express 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoPowerPoint", "AutoPowerPoint\AutoPowerPoint.csproj", "{1A2FB63E-5754-41E3-AF1E-16B4F18575AD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BandObjectLib", "BandObjectLib\BandObjectLib.csproj", "{BDB3B670-A17B-483E-954C-52FC2B6FF9D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MatrixControl", "MatrixControl\MatrixControl.csproj", "{14C5E901-34B6-492D-8576-AF4866131770}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1A2FB63E-5754-41E3-AF1E-16B4F18575AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A2FB63E-5754-41E3-AF1E-16B4F18575AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A2FB63E-5754-41E3-AF1E-16B4F18575AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A2FB63E-5754-41E3-AF1E-16B4F18575AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDB3B670-A17B-483E-954C-52FC2B6FF9D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDB3B670-A17B-483E-954C-52FC2B6FF9D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDB3B670-A17B-483E-954C-52FC2B6FF9D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDB3B670-A17B-483E-954C-52FC2B6FF9D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14C5E901-34B6-492D-8576-AF4866131770}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14C5E901-34B6-492D-8576-AF4866131770}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14C5E901-34B6-492D-8576-AF4866131770}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14C5E901-34B6-492D-8576-AF4866131770}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
