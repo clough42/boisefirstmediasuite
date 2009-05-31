@@ -13,7 +13,6 @@ namespace AutoPowerPoint
     {
         private const string POWERPOINT_VIEWER_PROCESS_NAME = "PPTVIEW";
 
-        private FileSystemWatcher watcher = null;
         private string presentationFile = null;
         private string presentationDir = null;
         string oldHash = null;
