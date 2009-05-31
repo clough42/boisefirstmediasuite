@@ -48,12 +48,6 @@ namespace AutoPowerPoint
 
         public void Run()
         {
-            //this.watcher = new FileSystemWatcher(this.presentationDir);
-            //this.watcher.Changed += new FileSystemEventHandler(watcher_Changed);
-            //this.watcher.Renamed += new RenamedEventHandler(watcher_Renamed);
-            //this.watcher.Created += new FileSystemEventHandler(watcher_Created);
-            //this.watcher.EnableRaisingEvents = true;
-
             while (true)
             {
                 EvaluateFile(this.presentationFile);
@@ -62,21 +56,6 @@ namespace AutoPowerPoint
                 Thread.Sleep(30 * 1000);
             }
         }
-
-        //void watcher_Created(object sender, FileSystemEventArgs e)
-        //{
-        //    EvaluateFile(e.FullPath);
-        //}
-
-        //void watcher_Renamed(object sender, RenamedEventArgs e)
-        //{
-        //    EvaluateFile(e.FullPath);
-        //}
-
-        //void watcher_Changed(object sender, FileSystemEventArgs e)
-        //{
-        //    EvaluateFile(e.FullPath);
-        //}
 
         void EvaluateFile(string filename)
         {
@@ -150,6 +129,5 @@ namespace AutoPowerPoint
         }
 
     }
-
 
 }
