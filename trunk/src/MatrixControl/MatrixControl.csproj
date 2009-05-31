@@ -62,6 +62,9 @@
     <EmbeddedResource Include="MatrixControlBar.resx">
       <DependentUpon>MatrixControlBar.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Settings.resx">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -81,6 +84,12 @@
     </Compile>
     <Compile Include="MatrixControlBar.Designer.cs">
       <DependentUpon>MatrixControlBar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Settings.Designer.cs">
+      <DependentUpon>Settings.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

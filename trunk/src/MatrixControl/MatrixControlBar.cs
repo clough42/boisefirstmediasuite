@@ -19,6 +19,13 @@ namespace MatrixControl
         {
             InitializeComponent();
         }
+
+
+        void settingsMenuItem_Click(object sender, System.EventArgs e)
+        {
+            new Settings().Show();
+        }
+
     }
 }
 
