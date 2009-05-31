@@ -17,6 +17,7 @@ namespace AutoPowerPoint
         private string presentationFile = null;
         private string presentationDir = null;
         string oldHash = null;
+        string processName = POWERPOINT_VIEWER_PROCESS_NAME;
         object sync = new object();
 
         public AutoViewer(string[] args)
@@ -114,12 +115,13 @@ namespace AutoPowerPoint
             proc.StartInfo.UseShellExecute = true;
             proc.StartInfo.FileName = this.presentationFile;
             proc.Start();
+            this.processName = proc.ProcessName;
             //proc.Dispose();
         }
 
         private void KillPowerPointViewer()
         {
-            Process[] procs = Process.GetProcessesByName(POWERPOINT_VIEWER_PROCESS_NAME);
+            Process[] procs = Process.GetProcessesByName(processName);
             foreach (Process proc in procs)
             {
                 proc.Kill();
