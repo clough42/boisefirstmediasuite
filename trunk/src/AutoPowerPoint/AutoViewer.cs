@@ -48,65 +48,69 @@ namespace AutoPowerPoint
 
         public void Run()
         {
-            this.watcher = new FileSystemWatcher(this.presentationDir);
-            this.watcher.Changed += new FileSystemEventHandler(watcher_Changed);
-            this.watcher.Renamed += new RenamedEventHandler(watcher_Renamed);
-            this.watcher.Created += new FileSystemEventHandler(watcher_Created);
-            this.watcher.EnableRaisingEvents = true;
-
-            EvaluateFile(null);
+            //this.watcher = new FileSystemWatcher(this.presentationDir);
+            //this.watcher.Changed += new FileSystemEventHandler(watcher_Changed);
+            //this.watcher.Renamed += new RenamedEventHandler(watcher_Renamed);
+            //this.watcher.Created += new FileSystemEventHandler(watcher_Created);
+            //this.watcher.EnableRaisingEvents = true;
 
             while (true)
             {
-                Thread.Sleep(60 * 60 * 1000);
+                EvaluateFile(this.presentationFile);
+
+                // wait and then check again
+                Thread.Sleep(30 * 1000);
             }
         }
 
-        void watcher_Created(object sender, FileSystemEventArgs e)
-        {
-            EvaluateFile(e.FullPath);
-        }
+        //void watcher_Created(object sender, FileSystemEventArgs e)
+        //{
+        //    EvaluateFile(e.FullPath);
+        //}
 
-        void watcher_Renamed(object sender, RenamedEventArgs e)
-        {
-            EvaluateFile(e.FullPath);
-        }
+        //void watcher_Renamed(object sender, RenamedEventArgs e)
+        //{
+        //    EvaluateFile(e.FullPath);
+        //}
 
-        void watcher_Changed(object sender, FileSystemEventArgs e)
-        {
-            EvaluateFile(e.FullPath);
-        }
+        //void watcher_Changed(object sender, FileSystemEventArgs e)
+        //{
+        //    EvaluateFile(e.FullPath);
+        //}
 
         void EvaluateFile(string filename)
         {
-            lock (this.sync)
+            try
             {
-                if (filename != null && filename != this.presentationFile)
+                lock (this.sync)
                 {
-                    // not the file we care about
-                    return;
+                    if (filename != null && filename != this.presentationFile)
+                    {
+                        // not the file we care about
+                        return;
+                    }
+
+                    string newHash = CalculateHash(this.presentationFile);
+                    if (oldHash != null && newHash == oldHash)
+                    {
+                        // nothing has changed
+                        return;
+                    }
+                    this.oldHash = newHash;
+
+                    // time to change the presentation
+                    // first, kill any old presentation that's running
+                    KillPowerPointViewer();
+
+                    // and start up the new presentation
+                    StartPowerPointViewer(this.presentationFile);
                 }
 
-                // wait ten seconds to make sure things have a chance to quiesce
-                Thread.Sleep(10000);
-
-                string newHash = CalculateHash(this.presentationFile);
-                if (oldHash != null && newHash == oldHash)
-                {
-                    // nothing has changed
-                    return;
-                }
-                this.oldHash = newHash;
-
-                // time to change the presentation
-                // first, kill any old presentation that's running
-                KillPowerPointViewer();
-
-                // and start up the new presentation
-                StartPowerPointViewer(this.presentationFile);
             }
-
-
+            catch (Exception e)
+            {
+                System.Console.Out.WriteLine("EXCEPTION: " + e.Message);
+            }
         }
 
         private void StartPowerPointViewer(string p)
@@ -116,7 +120,7 @@ namespace AutoPowerPoint
             proc.StartInfo.FileName = this.presentationFile;
             proc.Start();
             this.processName = proc.ProcessName;
-            //proc.Dispose();
+            proc.Dispose();
         }
 
         private void KillPowerPointViewer()
