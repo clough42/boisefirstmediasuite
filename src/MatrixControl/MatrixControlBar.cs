@@ -37,6 +37,11 @@ namespace MatrixControl
             new SettingsDialog(this.settings).ShowDialog();
         }
 
+        void aboutMenuItem_Click(object sender, System.EventArgs e)
+        {
+            new AboutBox().ShowDialog();
+        }
+
         private void settings_PresetsChanged(Settings settings)
         {
             PopulateComboBox(presetComboBox, settings.SelectedPreset, settings.Presets);
