@@ -312,7 +312,7 @@
             this.presetBox5.Location = new System.Drawing.Point(85, 174);
             this.presetBox5.Name = "presetBox5";
             this.presetBox5.Size = new System.Drawing.Size(162, 20);
-            this.presetBox5.TabIndex = 34;
+            this.presetBox5.TabIndex = 32;
             // 
             // presetBox6
             // 
@@ -320,7 +320,7 @@
             this.presetBox6.Location = new System.Drawing.Point(85, 200);
             this.presetBox6.Name = "presetBox6";
             this.presetBox6.Size = new System.Drawing.Size(162, 20);
-            this.presetBox6.TabIndex = 35;
+            this.presetBox6.TabIndex = 33;
             // 
             // presetBox7
             // 
@@ -328,7 +328,7 @@
             this.presetBox7.Location = new System.Drawing.Point(85, 226);
             this.presetBox7.Name = "presetBox7";
             this.presetBox7.Size = new System.Drawing.Size(162, 20);
-            this.presetBox7.TabIndex = 33;
+            this.presetBox7.TabIndex = 34;
             // 
             // presetBox8
             // 
@@ -656,7 +656,7 @@
             this.okButton.Location = new System.Drawing.Point(551, 3);
             this.okButton.Name = "okButton";
             this.okButton.Size = new System.Drawing.Size(75, 23);
-            this.okButton.TabIndex = 3;
+            this.okButton.TabIndex = 53;
             this.okButton.Text = "OK";
             this.okButton.UseVisualStyleBackColor = true;
             this.okButton.Click += new System.EventHandler(this.okButton_Click);
