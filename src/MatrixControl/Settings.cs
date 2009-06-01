@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml.Serialization;
+using Microsoft.Win32;
 
 namespace MatrixControl
 {
@@ -45,8 +47,7 @@ namespace MatrixControl
             this.SelectedPresetChanged = null;
             this.SelectedPreviewChanged = null;
 
-            // TODO: load settings from persisted storage
-            // TODO: figure out how to persist settings so they can be loaded later
+            LoadSettings();
         }
 
         /// <summary>
@@ -62,6 +63,7 @@ namespace MatrixControl
                 {
                     this.ComPortChanged(this);
                 }
+                SaveSettings();
             }
         }
 
@@ -124,6 +126,7 @@ namespace MatrixControl
                     {
                         this.PresetsChanged(this);
                     }
+                    SaveSettings();
                 }
             }
 
@@ -172,6 +175,7 @@ namespace MatrixControl
                     {
                         this.InputsChanged(this);
                     }
+                    SaveSettings();
                 }
             }
         }
@@ -227,6 +231,92 @@ namespace MatrixControl
 
         public SelectedPreviewChangedHandler SelectedPreviewChanged;
 
+        const string BOISEFIRST = "Boise First";
+        const string MEDIASUITE = "Media Suite";
+        const string MATRIXCONTROL = "Matrix Control Bar";
+        const string COMPORT = "ComPort";
+        const string PRESET = "Preset";
+        const string INPUT = "Input";
+
+        private void SaveSettings()
+        {
+            using (RegistryKey key = Registry.CurrentUser)
+            {
+                using (RegistryKey swKey = OpenOrCreateSubKey(key, "Software"))
+                {
+                    using (RegistryKey bfKey = OpenOrCreateSubKey(swKey, BOISEFIRST))
+                    {
+                        using (RegistryKey msKey = OpenOrCreateSubKey(bfKey, MEDIASUITE))
+                        {
+                            using (RegistryKey mcKey = OpenOrCreateSubKey(msKey, MATRIXCONTROL))
+                            {
+                                SetKeyValue(mcKey, COMPORT, this.comPort, RegistryValueKind.String);
+
+                                for (int i = 0; i < this.Presets.Length; i++)
+                                {
+                                    SetKeyValue(mcKey, PRESET + (i + 1), this.Presets[i], RegistryValueKind.String);
+                                }
+                                for (int i = 0; i < this.Inputs.Length; i++)
+                                {
+                                    SetKeyValue(mcKey, INPUT + (i + 1), this.Inputs[i], RegistryValueKind.String);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void LoadSettings()
+        {
+            using (RegistryKey key = Registry.CurrentUser)
+            {
+                using (RegistryKey swKey = OpenOrCreateSubKey(key, "Software"))
+                {
+                    using (RegistryKey bfKey = OpenOrCreateSubKey(swKey, BOISEFIRST))
+                    {
+                        using (RegistryKey msKey = OpenOrCreateSubKey(bfKey, MEDIASUITE))
+                        {
+                            using (RegistryKey mcKey = OpenOrCreateSubKey(msKey, MATRIXCONTROL))
+                            {
+                                this.comPort = mcKey.GetValue(COMPORT, null) as string;
+
+                                for (int i = 0; i < this.Presets.Length; i++)
+                                {
+                                    this.Presets[i] = mcKey.GetValue(PRESET + (i + 1), null) as string;
+                                }
+                                for (int i = 0; i < this.Inputs.Length; i++)
+                                {
+                                    this.Inputs[i] = mcKey.GetValue(INPUT + (i + 1), null) as string;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        RegistryKey OpenOrCreateSubKey(RegistryKey parent, string subKeyName)
+        {
+            RegistryKey child = parent.OpenSubKey(subKeyName, true);
+            if (child == null)
+            {
+                child = parent.CreateSubKey(subKeyName, RegistryKeyPermissionCheck.ReadWriteSubTree);
+            }
+            return child;
+        }
+
+        void SetKeyValue(RegistryKey key, string valueName, object value, RegistryValueKind valueKind)
+        {
+            if (value == null)
+            {
+                key.DeleteValue(valueName, false);
+            }
+            else
+            {
+                key.SetValue(valueName, value, valueKind);
+            }
+        }
 
     }
 }
