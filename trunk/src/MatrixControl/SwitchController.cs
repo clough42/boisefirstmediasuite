@@ -11,18 +11,42 @@ namespace MatrixControl
         public SwitchController(Settings settings)
         {
             settings.ComPortChanged += new ComPortChangedHandler(this.settings_ComPortChanged);
-            OpenComPort(settings);
+            settings.SelectedPresetChanged += new SelectedPresetChangedHandler(this.settings_SelectedPresetChanged);
+            settings.SelectedPreviewChanged += new SelectedPreviewChangedHandler(this.settings_SelectedPreviewChanged);
+            OpenComPort(settings.ComPort);
         }
 
         private void settings_ComPortChanged(Settings settings)
         {
-            OpenComPort(settings);
+            OpenComPort(settings.ComPort);
         }
 
-        private void OpenComPort(Settings settings)
+        private void settings_SelectedPresetChanged(Settings settings)
         {
-            MessageBox.Show("Com port: " + settings.ComPort);
+            SwitchPreset(settings.SelectedPreset);
+            SwitchPreview(settings.SelectedPreview);
         }
+
+        private void settings_SelectedPreviewChanged(Settings settings)
+        {
+            SwitchPreview(settings.SelectedPreview);
+        }
+
+        private void OpenComPort(string comPort)
+        {
+            MessageBox.Show("Opening com port: " + comPort);
+        }
+
+        private void SwitchPreview(int preview)
+        {
+            MessageBox.Show("Switching to preview " + preview);
+        }
+
+        private void SwitchPreset(int preset)
+        {
+            MessageBox.Show("Switching to preset " + preset);
+        }
+
 
     }
 }

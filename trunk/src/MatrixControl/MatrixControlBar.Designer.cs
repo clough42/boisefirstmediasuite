@@ -42,8 +42,6 @@
             // 
             this.presetComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.presetComboBox.FormattingEnabled = true;
-            this.presetComboBox.Items.AddRange(new object[] {
-            "Worship"});
             this.presetComboBox.Location = new System.Drawing.Point(48, 0);
             this.presetComboBox.Name = "presetComboBox";
             this.presetComboBox.Size = new System.Drawing.Size(121, 21);
@@ -54,8 +52,6 @@
             // 
             this.previewComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.previewComboBox.FormattingEnabled = true;
-            this.previewComboBox.Items.AddRange(new object[] {
-            "DVD"});
             this.previewComboBox.Location = new System.Drawing.Point(205, 0);
             this.previewComboBox.Name = "previewComboBox";
             this.previewComboBox.Size = new System.Drawing.Size(121, 21);

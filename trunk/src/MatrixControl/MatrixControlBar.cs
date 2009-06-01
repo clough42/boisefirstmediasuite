@@ -26,6 +26,10 @@ namespace MatrixControl
             this.controller = new SwitchController(this.settings);
 
             InitializeComponent();
+
+            // call these to make sure the comboboxes are filled in
+            settings_PresetsChanged(this.settings);
+            settings.InputsChanged(this.settings);
         }
 
         void settingsMenuItem_Click(object sender, System.EventArgs e)
