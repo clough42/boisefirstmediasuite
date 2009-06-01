@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.presetComboBox = new System.Windows.Forms.ComboBox();
+            this.previewComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -38,27 +38,29 @@
             this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
-            // comboBox1
+            // presetComboBox
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.presetComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.presetComboBox.FormattingEnabled = true;
+            this.presetComboBox.Items.AddRange(new object[] {
             "Worship"});
-            this.comboBox1.Location = new System.Drawing.Point(48, 0);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 0;
+            this.presetComboBox.Location = new System.Drawing.Point(48, 0);
+            this.presetComboBox.Name = "presetComboBox";
+            this.presetComboBox.Size = new System.Drawing.Size(121, 21);
+            this.presetComboBox.TabIndex = 0;
+            this.presetComboBox.SelectedIndexChanged += new System.EventHandler(this.presetComboBox_SelectedIndexChanged);
             // 
-            // comboBox2
+            // previewComboBox
             // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.previewComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.previewComboBox.FormattingEnabled = true;
+            this.previewComboBox.Items.AddRange(new object[] {
             "DVD"});
-            this.comboBox2.Location = new System.Drawing.Point(205, 0);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 21);
-            this.comboBox2.TabIndex = 1;
+            this.previewComboBox.Location = new System.Drawing.Point(205, 0);
+            this.previewComboBox.Name = "previewComboBox";
+            this.previewComboBox.Size = new System.Drawing.Size(121, 21);
+            this.previewComboBox.TabIndex = 1;
+            this.previewComboBox.SelectedIndexChanged += new System.EventHandler(this.previewComboBox_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -83,14 +85,14 @@
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.settingsMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(137, 26);
+            this.contextMenuStrip.Size = new System.Drawing.Size(126, 26);
             // 
             // settingsMenuItem
             // 
             this.settingsMenuItem.Name = "settingsMenuItem";
-            this.settingsMenuItem.Size = new System.Drawing.Size(136, 22);
+            this.settingsMenuItem.Size = new System.Drawing.Size(125, 22);
             this.settingsMenuItem.Text = "Settings...";
-            this.settingsMenuItem.Click += new System.EventHandler(settingsMenuItem_Click);
+            this.settingsMenuItem.Click += new System.EventHandler(this.settingsMenuItem_Click);
             // 
             // MatrixControlBar
             // 
@@ -100,8 +102,8 @@
             this.ContextMenuStrip = this.contextMenuStrip;
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.previewComboBox);
+            this.Controls.Add(this.presetComboBox);
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.MinSize = new System.Drawing.Size(330, 21);
             this.Name = "MatrixControlBar";
@@ -114,8 +116,8 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox presetComboBox;
+        private System.Windows.Forms.ComboBox previewComboBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
