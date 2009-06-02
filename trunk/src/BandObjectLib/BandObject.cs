@@ -26,7 +26,7 @@ namespace BandObjectLib
 	/// public class HelloWorldBar : BandObject
 	/// { /*...*/ }
 	/// </example>
-	public class BandObject : UserControl, IObjectWithSite, IDeskBand, IDockingWindow, IOleWindow, IInputObject 
+	public class BandObject : UserControl, IObjectWithSite, IDeskBand, IDockingWindow, IOleWindow, IInputObject, IPersistStream
 	{
 		/// <summary>
 		/// Reference to the host explorer.
@@ -366,5 +366,35 @@ namespace BandObjectLib
 
 			Registry.ClassesRoot.CreateSubKey(@"CLSID").DeleteSubKeyTree(guid);
 		}
-	}
+
+        #region IPersistStream Members
+
+        public void GetClassID(out Guid pClassID)
+        {
+            Guid guid = this.GetType().GUID;
+            pClassID = guid;
+        }
+
+
+        public Int32 IsDirty()
+        {
+            return 1; //S_FALSE;
+        }
+
+        public new void Load([In, MarshalAs(UnmanagedType.Interface)] Object pStm)
+        {
+        }
+
+        public void Save([In, MarshalAs(UnmanagedType.Interface)] System.IntPtr pStm, [In, MarshalAs(UnmanagedType.Bool)] bool fClearDirty)
+        {
+        }
+
+        public Int32 GetSizeMax([Out] UInt64 pcbSize)
+        {
+            long t = 0x80004001L; //E_NOTIMPL
+            return (Int32)t;
+        }
+
+        #endregion
+    }
 }

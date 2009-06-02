@@ -119,16 +119,17 @@ namespace BandObjectLib
 	[Guid("00000109-0000-0000-C000-000000000046")]
 	public interface IPersistStream
 	{
-		void GetClassID(out Guid pClassID);
+        void GetClassID(out Guid pClassID);
 
-		void IsDirty ();
+        [PreserveSigAttribute]
+        Int32 IsDirty();
 
-		void Load ([In, MarshalAs(UnmanagedType.Interface)] Object pStm);
+        void Load([In, MarshalAs(UnmanagedType.Interface)] Object pStm);
 
-		void Save ([In, MarshalAs(UnmanagedType.Interface)] Object pStm,
-			[In] bool fClearDirty);
+        void Save([In, MarshalAs(UnmanagedType.Interface)]System.IntPtr pStm, [In, MarshalAs(UnmanagedType.Bool)] bool fClearDirty);
 
-		void GetSizeMax ([Out] out UInt64 pcbSize);
+        [PreserveSigAttribute]
+        Int32 GetSizeMax([Out] UInt64 pcbSize);
 	}
 
 
