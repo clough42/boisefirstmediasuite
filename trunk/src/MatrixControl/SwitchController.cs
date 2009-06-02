@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.IO.Ports;
 
 namespace MatrixControl
 {
     class SwitchController
     {
+        private SerialPort port = null;
+
         public SwitchController(Settings settings)
         {
             settings.ComPortChanged += new ComPortChangedHandler(this.settings_ComPortChanged);
@@ -32,9 +35,43 @@ namespace MatrixControl
             SwitchPreview(settings.SelectedPreview);
         }
 
+        /// <summary>
+        /// Returns a list of valid com ports on this system.
+        /// </summary>
+        public static string[] ValidComPorts
+        {
+            get
+            {
+                return SerialPort.GetPortNames();
+            }
+        }
+
         private void OpenComPort(string comPort)
         {
-            MessageBox.Show("Opening com port: " + comPort);
+            try
+            {
+                if (this.port != null)
+                {
+                    this.port.Close();
+                    this.port = null;
+                }
+
+                if (comPort != null && comPort.Length > 0)
+                {
+                    port = new SerialPort(comPort);
+                    port.BaudRate = 9600;
+                    port.DataBits = 8;
+                    port.StopBits = StopBits.One;
+                    port.Parity = Parity.None;
+                    port.Handshake = Handshake.None;
+                    port.Open();
+                    MessageBox.Show("Com port open: " + comPort);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("ERROR opening serial port\r\n" + e.ToString());
+            }
         }
 
         private void SwitchPreview(int preview)
