@@ -64,24 +64,29 @@ namespace MatrixControl
                     port.StopBits = StopBits.One;
                     port.Parity = Parity.None;
                     port.Handshake = Handshake.None;
-                    port.Open();
-                    MessageBox.Show("Com port open: " + comPort);
                 }
             }
             catch (Exception e)
             {
-                MessageBox.Show("ERROR opening serial port\r\n" + e.ToString());
+                MessageBox.Show("ERROR creating serial port\r\n" + e.ToString());
             }
         }
 
         private void SwitchPreview(int preview)
         {
-            MessageBox.Show("Switching to preview " + preview);
+
+            string command = String.Format("{0}*8!\r\n", preview);
+            port.Open();
+            port.Write(command);
+            port.Close();
         }
 
         private void SwitchPreset(int preset)
         {
-            MessageBox.Show("Switching to preset " + preset);
+            string command = String.Format("{0}.\r\n", preset);
+            port.Open();
+            port.Write(command);
+            port.Close();
         }
 
 
