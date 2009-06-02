@@ -55,7 +55,7 @@ namespace MatrixControl
         private void Settings_Shown(object sender, EventArgs e)
         {
             //string[] portNames = SerialPort.GetPortNames();
-            string[] portNames = new string[] { "COM1", "COM2", "COM3" };
+            string[] portNames = SwitchController.ValidComPorts;
             this.comPortComboBox.Items.Clear();
             foreach (string portName in portNames)
             {
