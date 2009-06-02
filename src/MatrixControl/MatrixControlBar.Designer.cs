@@ -37,33 +37,38 @@
             this.settingsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.contextMenuStrip.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // presetComboBox
             // 
+            this.presetComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.presetComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.presetComboBox.FormattingEnabled = true;
-            this.presetComboBox.Location = new System.Drawing.Point(48, 0);
+            this.presetComboBox.Location = new System.Drawing.Point(49, 3);
             this.presetComboBox.Name = "presetComboBox";
-            this.presetComboBox.Size = new System.Drawing.Size(121, 21);
+            this.presetComboBox.Size = new System.Drawing.Size(113, 21);
             this.presetComboBox.TabIndex = 0;
             this.presetComboBox.SelectedIndexChanged += new System.EventHandler(this.presetComboBox_SelectedIndexChanged);
             // 
             // previewComboBox
             // 
+            this.previewComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.previewComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.previewComboBox.FormattingEnabled = true;
-            this.previewComboBox.Location = new System.Drawing.Point(205, 0);
+            this.previewComboBox.Location = new System.Drawing.Point(203, 3);
             this.previewComboBox.Name = "previewComboBox";
-            this.previewComboBox.Size = new System.Drawing.Size(121, 21);
-            this.previewComboBox.TabIndex = 1;
+            this.previewComboBox.Size = new System.Drawing.Size(114, 21);
+            this.previewComboBox.TabIndex = 0;
             this.previewComboBox.SelectedIndexChanged += new System.EventHandler(this.previewComboBox_SelectedIndexChanged);
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(175, 4);
+            this.label1.Location = new System.Drawing.Point(168, 7);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(29, 13);
             this.label1.TabIndex = 2;
@@ -71,8 +76,9 @@
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 4);
+            this.label2.Location = new System.Drawing.Point(3, 7);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(40, 13);
             this.label2.TabIndex = 3;
@@ -106,21 +112,39 @@
             this.aboutMenuItem.Text = "About Matrix Control Bar...";
             this.aboutMenuItem.Click += new System.EventHandler(this.aboutMenuItem_Click);
             // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 4;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.presetComboBox, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.previewComboBox, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label1, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(320, 27);
+            this.tableLayoutPanel1.TabIndex = 4;
+            // 
             // MatrixControlBar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ContextMenuStrip = this.contextMenuStrip;
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.previewComboBox);
-            this.Controls.Add(this.presetComboBox);
-            this.MinSize = new System.Drawing.Size(330, 21);
+            this.Controls.Add(this.tableLayoutPanel1);
+            this.MinSize = new System.Drawing.Size(275, 27);
             this.Name = "MatrixControlBar";
-            this.Size = new System.Drawing.Size(330, 21);
+            this.Size = new System.Drawing.Size(320, 27);
             this.contextMenuStrip.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -134,6 +158,7 @@
         private System.Windows.Forms.ToolStripMenuItem settingsMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem aboutMenuItem;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
 
     }
 }
