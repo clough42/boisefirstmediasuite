@@ -25,11 +25,10 @@ namespace MatrixControl
             Close();
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void AboutBox_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(this.urlLinkLabel.Text);
+            Close();
         }
-
 
     }
 }
