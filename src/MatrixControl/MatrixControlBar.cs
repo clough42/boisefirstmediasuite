@@ -90,6 +90,13 @@ namespace MatrixControl
             }
         }
 
+        protected override void OnPaintBackground(PaintEventArgs pevent)
+        { 
+            RECT rect = new RECT(pevent.ClipRectangle);
+            IntPtr hdc = pevent.Graphics.GetHdc(); 
+            int ret = ParentBackground.DrawThemeParentBackground(this.Handle, hdc, ref rect);
+            pevent.Graphics.ReleaseHdc(hdc);
+        }
     }
 }
 
