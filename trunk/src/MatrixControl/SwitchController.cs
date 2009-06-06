@@ -26,8 +26,7 @@ namespace MatrixControl
 
         private void settings_SelectedPresetChanged(Settings settings)
         {
-            SwitchPreset(settings.SelectedPreset);
-            SwitchPreview(settings.SelectedPreview);
+            SwitchPreset(settings.SelectedPreset, settings.SelectedPreview);
         }
 
         private void settings_SelectedPreviewChanged(Settings settings)
@@ -81,9 +80,10 @@ namespace MatrixControl
             port.Close();
         }
 
-        private void SwitchPreset(int preset)
+        // selects the preset and re-selects the preview in one command
+        private void SwitchPreset(int preset, int preview)
         {
-            string command = String.Format("{0}.\r\n", preset);
+            string command = String.Format("{0}.{1}*8!\r\n", preset, preview);
             port.Open();
             port.Write(command);
             port.Close();
