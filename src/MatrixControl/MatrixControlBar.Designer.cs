@@ -101,24 +101,24 @@
             this.toolStripSeparator1,
             this.aboutMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(216, 54);
+            this.contextMenuStrip.Size = new System.Drawing.Size(217, 54);
             // 
             // settingsMenuItem
             // 
             this.settingsMenuItem.Name = "settingsMenuItem";
-            this.settingsMenuItem.Size = new System.Drawing.Size(215, 22);
+            this.settingsMenuItem.Size = new System.Drawing.Size(216, 22);
             this.settingsMenuItem.Text = "Settings...";
             this.settingsMenuItem.Click += new System.EventHandler(this.settingsMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(212, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(213, 6);
             // 
             // aboutMenuItem
             // 
             this.aboutMenuItem.Name = "aboutMenuItem";
-            this.aboutMenuItem.Size = new System.Drawing.Size(215, 22);
+            this.aboutMenuItem.Size = new System.Drawing.Size(216, 22);
             this.aboutMenuItem.Text = "About Matrix Control Bar...";
             this.aboutMenuItem.Click += new System.EventHandler(this.aboutMenuItem_Click);
             // 
@@ -147,10 +147,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.MenuText;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ContextMenuStrip = this.contextMenuStrip;
             this.Controls.Add(this.tableLayoutPanel1);
-            this.ForeColor = System.Drawing.SystemColors.Menu;
+            this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.MinSize = new System.Drawing.Size(275, 27);
             this.Name = "MatrixControlBar";
             this.Size = new System.Drawing.Size(320, 27);
