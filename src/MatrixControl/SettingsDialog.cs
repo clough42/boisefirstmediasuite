@@ -15,6 +15,7 @@ namespace MatrixControl
         Settings settings;
         private TextBox[] presetBoxes;
         private TextBox[] inputBoxes;
+        private TextBox[] outputBoxes;
 
         public SettingsDialog(Settings settings)
         {
@@ -50,6 +51,15 @@ namespace MatrixControl
                 this.inputBox7,
                 this.inputBox8
             };
+            this.outputBoxes = new TextBox[]{
+                this.outputBox1,
+                this.outputBox2,
+                this.outputBox3,
+                this.outputBox4,
+                this.outputBox5,
+                this.outputBox6,
+                this.outputBox7
+            };
         }
 
         private void Settings_Shown(object sender, EventArgs e)
@@ -75,6 +85,10 @@ namespace MatrixControl
             for (i = 0; i < settings.NumInputs; i++)
             {
                 this.inputBoxes[i].Text = (settings.Inputs[i] == null ? "" : settings.Inputs[i]);
+            }
+            for (i = 0; i < settings.NumOutputs; i++)
+            {
+                this.outputBoxes[i].Text = (settings.Outputs[i] == null ? "" : settings.Outputs[i]);
             }
         }
 
@@ -114,8 +128,20 @@ namespace MatrixControl
             }
             settings.Inputs = inputs;
 
+            string[] outputs = new string[settings.NumOutputs];
+            for (i = 0; i < settings.NumOutputs; i++)
+            {
+                string output = outputBoxes[i].Text;
+                output = output.Trim();
+                if (output.Length == 0)
+                {
+                    output = null;
+                }
+                outputs[i] = output;
+            }
+            settings.Outputs = outputs;
+
             this.Close();
         }
-
     }
 }

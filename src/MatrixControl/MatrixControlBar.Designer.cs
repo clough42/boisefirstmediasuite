@@ -32,12 +32,14 @@
             this.presetComboBox = new System.Windows.Forms.ComboBox();
             this.previewComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.presetLabel = new System.Windows.Forms.Label();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.settingsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.overridesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.overrideWarningTip = new System.Windows.Forms.ToolTip(this.components);
             this.contextMenuStrip.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -81,44 +83,45 @@
             this.label1.Text = "Preview:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // label2
+            // presetLabel
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.presetLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(40, 27);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Preset:";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.presetLabel.AutoSize = true;
+            this.presetLabel.Location = new System.Drawing.Point(3, 0);
+            this.presetLabel.Name = "presetLabel";
+            this.presetLabel.Size = new System.Drawing.Size(40, 27);
+            this.presetLabel.TabIndex = 3;
+            this.presetLabel.Text = "Preset:";
+            this.presetLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // contextMenuStrip
             // 
             this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.settingsMenuItem,
+            this.overridesToolStripMenuItem,
             this.toolStripSeparator1,
             this.aboutMenuItem});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(217, 54);
+            this.contextMenuStrip.Size = new System.Drawing.Size(216, 76);
             // 
             // settingsMenuItem
             // 
             this.settingsMenuItem.Name = "settingsMenuItem";
-            this.settingsMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.settingsMenuItem.Size = new System.Drawing.Size(215, 22);
             this.settingsMenuItem.Text = "Settings...";
             this.settingsMenuItem.Click += new System.EventHandler(this.settingsMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(213, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(212, 6);
             // 
             // aboutMenuItem
             // 
             this.aboutMenuItem.Name = "aboutMenuItem";
-            this.aboutMenuItem.Size = new System.Drawing.Size(216, 22);
+            this.aboutMenuItem.Size = new System.Drawing.Size(215, 22);
             this.aboutMenuItem.Text = "About Matrix Control Bar...";
             this.aboutMenuItem.Click += new System.EventHandler(this.aboutMenuItem_Click);
             // 
@@ -133,7 +136,7 @@
             this.tableLayoutPanel1.Controls.Add(this.presetComboBox, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.previewComboBox, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.label1, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.presetLabel, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -142,6 +145,13 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(320, 27);
             this.tableLayoutPanel1.TabIndex = 4;
+            // 
+            // overridesToolStripMenuItem
+            // 
+            this.overridesToolStripMenuItem.Name = "overridesToolStripMenuItem";
+            this.overridesToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this.overridesToolStripMenuItem.Text = "Overrides...";
+            this.overridesToolStripMenuItem.Click += new System.EventHandler(this.overridesToolStripMenuItem_Click);
             // 
             // MatrixControlBar
             // 
@@ -166,12 +176,14 @@
         private System.Windows.Forms.ComboBox presetComboBox;
         private System.Windows.Forms.ComboBox previewComboBox;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label presetLabel;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem settingsMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem aboutMenuItem;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.ToolStripMenuItem overridesToolStripMenuItem;
+        private System.Windows.Forms.ToolTip overrideWarningTip;
 
     }
 }
