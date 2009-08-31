@@ -35,10 +35,10 @@
             this.presetLabel = new System.Windows.Forms.Label();
             this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.settingsMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.overridesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.overridesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.overrideWarningTip = new System.Windows.Forms.ToolTip(this.components);
             this.contextMenuStrip.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -113,6 +113,13 @@
             this.settingsMenuItem.Text = "Settings...";
             this.settingsMenuItem.Click += new System.EventHandler(this.settingsMenuItem_Click);
             // 
+            // overridesToolStripMenuItem
+            // 
+            this.overridesToolStripMenuItem.Name = "overridesToolStripMenuItem";
+            this.overridesToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
+            this.overridesToolStripMenuItem.Text = "Overrides...";
+            this.overridesToolStripMenuItem.Click += new System.EventHandler(this.overridesToolStripMenuItem_Click);
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
@@ -146,12 +153,9 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(320, 27);
             this.tableLayoutPanel1.TabIndex = 4;
             // 
-            // overridesToolStripMenuItem
+            // overrideWarningTip
             // 
-            this.overridesToolStripMenuItem.Name = "overridesToolStripMenuItem";
-            this.overridesToolStripMenuItem.Size = new System.Drawing.Size(215, 22);
-            this.overridesToolStripMenuItem.Text = "Overrides...";
-            this.overridesToolStripMenuItem.Click += new System.EventHandler(this.overridesToolStripMenuItem_Click);
+            this.overrideWarningTip.Active = false;
             // 
             // MatrixControlBar
             // 

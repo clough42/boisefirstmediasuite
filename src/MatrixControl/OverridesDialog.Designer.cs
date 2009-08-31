@@ -97,6 +97,7 @@
             // overrideBox7
             // 
             this.overrideBox7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.overrideBox7.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.overrideBox7.FormattingEnabled = true;
             this.overrideBox7.Location = new System.Drawing.Point(64, 185);
             this.overrideBox7.Name = "overrideBox7";
@@ -210,6 +211,7 @@
             // overrideBox1
             // 
             this.overrideBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.overrideBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.overrideBox1.FormattingEnabled = true;
             this.overrideBox1.Location = new System.Drawing.Point(64, 23);
             this.overrideBox1.Name = "overrideBox1";
@@ -219,6 +221,7 @@
             // overrideBox2
             // 
             this.overrideBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.overrideBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.overrideBox2.FormattingEnabled = true;
             this.overrideBox2.Location = new System.Drawing.Point(64, 50);
             this.overrideBox2.Name = "overrideBox2";
@@ -228,6 +231,7 @@
             // overrideBox3
             // 
             this.overrideBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.overrideBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.overrideBox3.FormattingEnabled = true;
             this.overrideBox3.Location = new System.Drawing.Point(64, 77);
             this.overrideBox3.Name = "overrideBox3";
@@ -237,6 +241,7 @@
             // overrideBox4
             // 
             this.overrideBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.overrideBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.overrideBox4.FormattingEnabled = true;
             this.overrideBox4.Location = new System.Drawing.Point(64, 104);
             this.overrideBox4.Name = "overrideBox4";
@@ -246,6 +251,7 @@
             // overrideBox5
             // 
             this.overrideBox5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.overrideBox5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.overrideBox5.FormattingEnabled = true;
             this.overrideBox5.Location = new System.Drawing.Point(64, 131);
             this.overrideBox5.Name = "overrideBox5";
@@ -255,6 +261,7 @@
             // overrideBox6
             // 
             this.overrideBox6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.overrideBox6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.overrideBox6.FormattingEnabled = true;
             this.overrideBox6.Location = new System.Drawing.Point(64, 158);
             this.overrideBox6.Name = "overrideBox6";
