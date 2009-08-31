@@ -11,8 +11,10 @@ namespace MatrixControl
     public delegate void ComPortChangedHandler(Settings settings);
     public delegate void PresetsChangedHandler(Settings settings);
     public delegate void InputsChangedHandler(Settings settings);
+    public delegate void OutputsChangedHandler(Settings settings);
     public delegate void SelectedPresetChangedHandler(Settings settings);
     public delegate void SelectedPreviewChangedHandler(Settings settings);
+    public delegate void OverridesChangedHandler(Settings settings);
 
     /// <summary>
     /// The MatrixControlBar settings object.  This class persists the settings
@@ -23,12 +25,15 @@ namespace MatrixControl
     {
         const int NUM_PRESETS = 16;
         const int NUM_INPUTS = 8;
+        const int NUM_OUTPUTS = 7;
         
         private string comPort = null;
         private string[] presets = null;
         private string[] inputs = null;
+        private string[] outputs = null;
         private int selectedPreset;
         private int selectedPreview;
+        private int[] overrides;
 
         /// <summary>
         /// Create a new instance of the Settings object.
@@ -38,14 +43,17 @@ namespace MatrixControl
             this.comPort = null;
             this.presets = null;
             this.inputs = null;
+            this.outputs = null;
             this.selectedPreset = 0;
             this.selectedPreview = 0;
 
             this.ComPortChanged = null;
             this.InputsChanged = null;
+            this.OutputsChanged = null;
             this.PresetsChanged = null;
             this.SelectedPresetChanged = null;
             this.SelectedPreviewChanged = null;
+            this.OverridesChanged = null;
 
             LoadSettings();
         }
@@ -86,6 +94,14 @@ namespace MatrixControl
         public int NumInputs
         {
             get { return NUM_INPUTS; }
+        }
+
+        /// <summary>
+        /// The number of outputs on the switch
+        /// </summary>
+        public int NumOutputs
+        {
+            get { return NUM_OUTPUTS; }
         }
 
 
@@ -183,6 +199,50 @@ namespace MatrixControl
         public InputsChangedHandler InputsChanged;
 
         /// <summary>
+        /// The array of outputs.  This is a zero-indexed array (0:n-1) and represents
+        /// the outputs 1-n.  Null values indicate that the output is not used.  Non-null
+        /// values are the name of the corresponding outputs.  Outputs[n-1] contains the name
+        /// of output n.
+        /// </summary>
+        public string[] Outputs
+        {
+            get
+            {
+                if (this.outputs == null)
+                {
+                    this.outputs = new string[NUM_OUTPUTS];
+                }
+                return this.outputs;
+            }
+            set
+            {
+                if (value.Length != NUM_OUTPUTS)
+                {
+                    throw new ArgumentException("Outputs array is the wrong length");
+                }
+                bool changed = false;
+                for (int i = 0; i < value.Length; i++)
+                {
+                    if (this.outputs[i] != value[i])
+                    {
+                        changed = true;
+                    }
+                }
+                if (changed)
+                {
+                    this.outputs = value;
+                    if (this.OutputsChanged != null)
+                    {
+                        this.OutputsChanged(this);
+                    }
+                    SaveSettings();
+                }
+            }
+        }
+
+        public OutputsChangedHandler OutputsChanged;
+
+        /// <summary>
         /// The selected (1-based) preset.  This is a number.  If the SelectedPreset is
         /// n, then Presets[n-1] contains the name of the preset.
         /// </summary>
@@ -231,12 +291,56 @@ namespace MatrixControl
 
         public SelectedPreviewChangedHandler SelectedPreviewChanged;
 
+        /// <summary>
+        /// Overrides.  These correspond to the outputs.  Array element (n-1) corresponds to
+        /// output n.  The value of the override is 0 if there is no override active, and n
+        /// to indicate that input n should go to that output.
+        /// </summary>
+        public int[] Overrides
+        {
+            get
+            {
+                if (this.overrides == null)
+                {
+                    this.overrides = new int[NUM_OUTPUTS];
+                }
+                return this.overrides;
+            }
+            set
+            {
+                if (value.Length != NUM_OUTPUTS)
+                {
+                    throw new ArgumentException("Overrides array is the wrong length");
+                }
+                bool changed = false;
+                for (int i = 0; i < value.Length; i++)
+                {
+                    if (this.overrides[i] != value[i])
+                    {
+                        changed = true;
+                    }
+                }
+                if (changed)
+                {
+                    this.overrides = value;
+                    if (this.OverridesChanged != null)
+                    {
+                        this.OverridesChanged(this);
+                    }
+                    //SaveSettings();
+                }
+            }
+        }
+
+        public OverridesChangedHandler OverridesChanged;
+
         const string BOISEFIRST = "Boise First";
         const string MEDIASUITE = "Media Suite";
         const string MATRIXCONTROL = "Matrix Control Bar";
         const string COMPORT = "ComPort";
         const string PRESET = "Preset";
         const string INPUT = "Input";
+        const string OUTPUT = "Output";
 
         private void SaveSettings()
         {
@@ -259,6 +363,10 @@ namespace MatrixControl
                                 for (int i = 0; i < this.Inputs.Length; i++)
                                 {
                                     SetKeyValue(mcKey, INPUT + (i + 1), this.Inputs[i], RegistryValueKind.String);
+                                }
+                                for (int i = 0; i < this.Outputs.Length; i++)
+                                {
+                                    SetKeyValue(mcKey, OUTPUT + (i + 1), this.Outputs[i], RegistryValueKind.String);
                                 }
                             }
                         }
@@ -288,6 +396,10 @@ namespace MatrixControl
                                 for (int i = 0; i < this.Inputs.Length; i++)
                                 {
                                     this.Inputs[i] = mcKey.GetValue(INPUT + (i + 1), null) as string;
+                                }
+                                for (int i = 0; i < this.Outputs.Length; i++)
+                                {
+                                    this.Outputs[i] = mcKey.GetValue(OUTPUT + (i + 1), null) as string;
                                 }
                             }
                         }

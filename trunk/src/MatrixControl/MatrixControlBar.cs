@@ -23,6 +23,7 @@ namespace MatrixControl
             this.settings = new Settings();
             this.settings.InputsChanged += new InputsChangedHandler(settings_InputsChanged);
             this.settings.PresetsChanged += new PresetsChangedHandler(settings_PresetsChanged);
+            this.settings.OverridesChanged += new OverridesChangedHandler(settings_OverridesChanged);
             this.controller = new SwitchController(this.settings);
 
             InitializeComponent();
@@ -30,11 +31,18 @@ namespace MatrixControl
             // call these to make sure the comboboxes are filled in
             settings_PresetsChanged(this.settings);
             settings_InputsChanged(this.settings);
+
+            overrideWarningTip.SetToolTip(this.presetLabel, "Overrides are active.  Right-click to configure");
         }
 
         void settingsMenuItem_Click(object sender, System.EventArgs e)
         {
             new SettingsDialog(this.settings).ShowDialog();
+        }
+
+        private void overridesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new OverridesDialog(this.settings).ShowDialog();
         }
 
         void aboutMenuItem_Click(object sender, System.EventArgs e)
@@ -50,6 +58,29 @@ namespace MatrixControl
         private void settings_InputsChanged(Settings settings)
         {
             PopulateComboBox(previewComboBox, settings.SelectedPreview, settings.Inputs);
+        }
+
+        private void settings_OverridesChanged(Settings settings)
+        {
+            bool overridesActive = false;
+            foreach (int i in settings.Overrides)
+            {
+                if (i > 0)
+                {
+                    overridesActive = true;
+                }
+            }
+
+            if (overridesActive)
+            {
+                this.presetLabel.BackColor = System.Drawing.Color.Red;
+                overrideWarningTip.Active = true;
+            }
+            else
+            {
+                this.presetLabel.BackColor = System.Drawing.Color.Transparent;
+                overrideWarningTip.Active = false;
+            }
         }
 
         private static void PopulateComboBox(ComboBox comboBox, int selected, string[] items)
@@ -97,6 +128,7 @@ namespace MatrixControl
             int ret = ParentBackground.DrawThemeParentBackground(this.Handle, hdc, ref rect);
             pevent.Graphics.ReleaseHdc(hdc);
         }
+
     }
 }
 
