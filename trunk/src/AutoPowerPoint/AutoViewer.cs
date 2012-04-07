@@ -14,6 +14,7 @@ namespace AutoPowerPoint
         private const string POWERPOINT_VIEWER_PROCESS_NAME = "PPTVIEW";
 
         private string presentationFile = null;
+        private string copyFile = null;
         private string presentationDir = null;
         string oldHash = null;
         string processName = POWERPOINT_VIEWER_PROCESS_NAME;
@@ -93,12 +94,28 @@ namespace AutoPowerPoint
 
         private void StartPowerPointViewer(string p)
         {
+            this.copyFile = makeTempCopy(this.presentationFile);
             Process proc = new Process();
             proc.StartInfo.UseShellExecute = true;
-            proc.StartInfo.FileName = this.presentationFile;
+            proc.StartInfo.FileName = this.copyFile;
             proc.Start();
             this.processName = proc.ProcessName;
             proc.Dispose();
+        }
+
+        private static string makeTempCopy(string presentationFile)
+        {
+            String copyFile = makeTempFileName(presentationFile);
+            System.Console.Out.WriteLine("Making copy: " + copyFile);
+            File.Copy(presentationFile, copyFile);
+            return copyFile;
+        }
+
+        private static string makeTempFileName(String presentationFile)
+        {
+            String extension = Path.GetExtension(presentationFile);
+            String path = Path.GetDirectoryName(presentationFile);
+            return Path.Combine(path, Guid.NewGuid().ToString() + extension);
         }
 
         private void KillPowerPointViewer()
@@ -107,7 +124,13 @@ namespace AutoPowerPoint
             foreach (Process proc in procs)
             {
                 proc.Kill();
+                proc.WaitForExit();
             }
+            if (this.copyFile != null && File.Exists(this.copyFile))
+            {
+                File.Delete(this.copyFile);
+            }
+            this.copyFile = null;
         }
 
         string CalculateHash(string filename)
