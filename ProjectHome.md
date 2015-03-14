@@ -1,0 +1,1 @@
+The Boise First Media Suite is a collection of software tools for Windows for operating and managing a video distribution system.  Included in the initial plan are a Windows Explorer Task Bar to remotely control a matrix video switch via RS-232 and software to automatically deploy and start slide loops on dedicated monitors.
